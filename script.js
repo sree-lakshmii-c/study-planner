@@ -32,8 +32,12 @@ function renderTasks() {
     tasks.forEach((task, index) => {
         const li = document.createElement("li");
 
+        if (task.completed) {
+            li.classList.add("completed");
+        }
+
         li.innerHTML = `
-            <div class="${task.completed ? 'completed' : ''}">
+            <div>
                 <strong>${task.subject}</strong> - ${task.name}
                 <br>
                 📅 ${task.deadline}
@@ -55,14 +59,6 @@ function toggleTask(index) {
 }
 
 function deleteTask(index) {
-    const taskItems = document.querySelectorAll("li");
-
-    // delete animation
-    taskItems[index].style.transform = "scale(0)";
-    taskItems[index].style.opacity = "0";
-
-    setTimeout(() => {
-        tasks.splice(index, 1);
-        renderTasks();
-    }, 300);
+    tasks.splice(index, 1);
+    renderTasks();
 }

@@ -1,49 +1,128 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: "Segoe UI", sans-serif;
     background: #f4f7ff;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
-/* container must stay above background */
+/* container */
 .container {
+    max-width: 850px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     position: relative;
     z-index: 2;
+
+    animation: fadePage 0.8s ease-in-out;
 }
 
-/* background layer */
+/* title */
+h1 {
+    text-align: center;
+    font-size: 32px;
+    color: #2c3e50;
+}
+
+/* input section */
+.input-section {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* inputs */
+input, select {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+/* ADD BUTTON (highlighted) */
+button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.08);
+}
+
+/* task list */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 25px;
+}
+
+li {
+    background: #eef3ff;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    animation: fadeIn 0.4s ease-in-out;
+    transition: 0.3s;
+}
+
+/* COMPLETED TASK STYLE */
+.completed {
+    opacity: 0.5;
+    text-decoration: line-through;
+    background: #dfe6e9 !important;
+}
+
+/* animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadePage {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* 🌿 doodles background */
 .bg-doodles {
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
+    top: 0;
+    left: 0;
     z-index: 1;
     pointer-events: none;
-    overflow: hidden;
 }
 
-/* common doodle style */
 .doodle {
     position: absolute;
-    width: 60px;
+    width: 55px;
     opacity: 0.08;
     animation: float 25s linear infinite;
 }
 
-/* animation */
 @keyframes float {
-    0% {
-        transform: translateY(100vh) rotate(0deg);
-    }
-    100% {
-        transform: translateY(-120vh) rotate(360deg);
-    }
+    0% { transform: translateY(100vh) rotate(0deg); }
+    100% { transform: translateY(-120vh) rotate(360deg); }
 }
 
-/* different speeds */
 .d1 { left: 10%; animation-duration: 30s; }
-.d2 { left: 25%; animation-duration: 22s; }
-.d3 { left: 40%; animation-duration: 28s; }
-.d4 { left: 60%; animation-duration: 20s; }
-.d5 { left: 80%; animation-duration: 26s; }
+.d2 { left: 30%; animation-duration: 22s; }
+.d3 { left: 50%; animation-duration: 28s; }
+.d4 { left: 70%; animation-duration: 24s; }
+.d5 { left: 85%; animation-duration: 26s; }

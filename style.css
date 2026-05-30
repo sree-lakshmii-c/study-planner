@@ -1,57 +1,49 @@
 body {
+    margin: 0;
     font-family: Arial, sans-serif;
     background: #f4f7ff;
-    margin: 0;
-    padding: 20px;
+    overflow: hidden;
 }
 
+/* container must stay above background */
 .container {
-    max-width: 800px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 2;
 }
 
-h1 {
-    text-align: center;
-    color: #333;
+/* background layer */
+.bg-doodles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
 }
 
-.input-section {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
+/* common doodle style */
+.doodle {
+    position: absolute;
+    width: 60px;
+    opacity: 0.08;
+    animation: float 25s linear infinite;
 }
 
-input, select, button {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+/* animation */
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-120vh) rotate(360deg);
+    }
 }
 
-button {
-    background: #007bff;
-    color: white;
-    cursor: pointer;
-    border: none;
-}
-
-button:hover {
-    background: #0056b3;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
-}
-
-li {
-    background: #eef3ff;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 6px;
-}
+/* different speeds */
+.d1 { left: 10%; animation-duration: 30s; }
+.d2 { left: 25%; animation-duration: 22s; }
+.d3 { left: 40%; animation-duration: 28s; }
+.d4 { left: 60%; animation-duration: 20s; }
+.d5 { left: 80%; animation-duration: 26s; }

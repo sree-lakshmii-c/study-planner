@@ -13,17 +13,19 @@ function addTask() {
     const task = {
         name: taskInput.value,
         subject: subject.value,
-        deadline: deadline.value
+        deadline: deadline.value,
+        completed: false
     };
 
     tasks.push(task);
+
     taskInput.value = "";
     deadline.value = "";
 
-    displayTasks();
+    renderTasks();
 }
 
-function displayTasks() {
+function renderTasks() {
     const taskList = document.getElementById("taskList");
     taskList.innerHTML = "";
 
@@ -31,17 +33,36 @@ function displayTasks() {
         const li = document.createElement("li");
 
         li.innerHTML = `
-            <strong>${task.subject}</strong> - ${task.name}
-            <br>
-            📅 Deadline: ${task.deadline}
-            <button onclick="deleteTask(${index})">Delete</button>
+            <div class="${task.completed ? 'completed' : ''}">
+                <strong>${task.subject}</strong> - ${task.name}
+                <br>
+                📅 ${task.deadline}
+            </div>
+
+            <div>
+                <button onclick="toggleTask(${index})">✔</button>
+                <button onclick="deleteTask(${index})">🗑</button>
+            </div>
         `;
 
         taskList.appendChild(li);
     });
 }
 
+function toggleTask(index) {
+    tasks[index].completed = !tasks[index].completed;
+    renderTasks();
+}
+
 function deleteTask(index) {
-    tasks.splice(index, 1);
-    displayTasks();
+    const taskItems = document.querySelectorAll("li");
+
+    // delete animation
+    taskItems[index].style.transform = "scale(0)";
+    taskItems[index].style.opacity = "0";
+
+    setTimeout(() => {
+        tasks.splice(index, 1);
+        renderTasks();
+    }, 300);
 }
